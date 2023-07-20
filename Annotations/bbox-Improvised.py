@@ -63,6 +63,8 @@ if __name__ == "__main__":
         x = cv2.imread(x, cv2.IMREAD_COLOR)
         y = cv2.imread(y, cv2.IMREAD_GRAYSCALE)
 
+        print(x.shape, y.shape)
+
         # Detecting bounding boxes
         bboxes = mask_to_bbox(y)
 
@@ -74,10 +76,10 @@ if __name__ == "__main__":
             # Calculate & store bounding boxes
             height = bbox[3]-bbox[1]
             width = bbox[2]-bbox[0]
-            x1 = bbox[0] + (width//2)
-            y1 = bbox[1] + (height//2)
+            x1 = bbox[0] + (width/2)
+            y1 = bbox[1] + (height/2)
 
-            height, width, x1, y1 = height/255, width/255, x1/255, y1/255
+            height, width, x1, y1 = height/256, width/256, x1/256, y1/256
             ''' VERIFY THE COORDINATES '''
 
             with open('annote.txt', 'a') as file:
