@@ -3,12 +3,13 @@
 ##### OBSERVATIONS #####
 
 - In the final ROI prediction, check the total area of the bbox (since number of bbox vary a lot)
+- Idea of NMS (Non max supression)
 - Usual bounding boxes may not be suitable for the work
 -
 
 
 
-##### THINGS TO TRY #####
+##### TRY #####
 
 - Bounding box method using roboflow (Give json annotation to roboflow)
 - Bounding box method on custom object without roboflow (Local machine / Google colab)
