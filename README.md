@@ -11,8 +11,7 @@
 ##### THINGS TO TRY #####
 
 - Bounding box method using roboflow (Give json annotation to roboflow)
-- Bounding box method on custom object without roboflow (Own machine or Google colab)
-  - Improvise the bounding box
+- Bounding box method on custom object without roboflow (Local machine / Google colab)
 - Object Detection using Polygon labelling
 - Build a segmentation model -> Build ROI using that segmentation
 
