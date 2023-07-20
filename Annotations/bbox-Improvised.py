@@ -69,13 +69,15 @@ if __name__ == "__main__":
         ''' NORMALIZE THE VALUES ?? '''
         # Marking bounding box on image
         for bbox in bboxes:
-            x = cv2.rectangle(x, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 2)
+            x = cv2.rectangle(x, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 1)
 
             # Calculate & store bounding boxes
             height = bbox[3]-bbox[1]
             width = bbox[2]-bbox[0]
             x1 = bbox[0] + (width//2)
             y1 = bbox[1] + (height//2)
+
+            height, width, x1, y1 = height/255, width/255, x1/255, y1/255
             ''' VERIFY THE COORDINATES '''
 
             with open('annote.txt', 'a') as file:

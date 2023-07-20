@@ -1,10 +1,9 @@
 # Fungus-ROI-Detection
 
-
 ##### OBSERVATIONS #####
 
-- Usual bounding boxes may not be suitable for the work (overal density vary a lot (low -> high))
--
+- In the final ROI prediction, check the total area of the bbox (since number of bbox vary a lot)
+- Usual bounding boxes may not be suitable for the work
 -
 
 
