@@ -79,13 +79,13 @@ if __name__ == "__main__":
             x1 = bbox[0] + (width/2)
             y1 = bbox[1] + (height/2)
 
-            height, width, x1, y1 = height/256, width/256, x1/256, y1/256
+            height, width, x1, y1 = round(height/256,2), round(width/256,2), round(x1/256,2), round(y1/256,2)
             ''' VERIFY THE COORDINATES '''
 
             with open('annote.txt', 'a') as file:
                 # print('Image : ', name)
-                val = '1' + '\t' + str(x1) + '\t' + str(y1) + '\t' + str(height) + '\t' + str(width)
-                file.write(val + '\n')
+                val = '0' + '\t' + str(x1) + '\t' + str(y1) + '\t' + str(height) + '\t' + str(width)
+                file.write(name + ' ' + val + '\n')
 
         # Saving the image
         cat_image = np.concatenate([x, parse_mask(y)], axis=1)

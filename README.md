@@ -2,7 +2,7 @@
 
 ##### OBSERVATIONS #####
 
-- In the final ROI prediction, check the total area of the bbox (since number of bbox vary a lot)
+- In the final ROI prediction, check the total area of the bbox & probability of the detection -> classify the patch
 - Idea of NMS (Non max supression)
 - Usual bounding boxes may not be suitable for the work
 -
@@ -24,3 +24,6 @@
 - Compare between different YOLO models
 - Compare between submodels for a model 
 - Different annotation tools
+
+- confusion
+- 
