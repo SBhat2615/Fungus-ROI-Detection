@@ -3,7 +3,8 @@ import numpy as np
 from glob import glob
 from tqdm import tqdm
 from skimage.measure import label, regionprops, find_contours
-
+from skimage.morphology import opening, remove_small_objects
+size_threshold = 32
 
 # Convert a mask to border image
 def mask_to_border(mask):
@@ -28,7 +29,7 @@ def mask_to_border(mask):
 def mask_to_bbox(mask):
     bboxes = []
 
-    mask = mask_to_border(mask)
+    #mask = mask_to_border(mask)
     lbl = label(mask)
     props = regionprops(lbl)
     for prop in props:
@@ -36,6 +37,9 @@ def mask_to_bbox(mask):
         y1 = prop.bbox[0]
         x2 = prop.bbox[3]
         y2 = prop.bbox[2]
+        # print((x2-x1) * (y2-y1))
+        if (x2-x1) * (y2-y1) < size_threshold:
+            continue
         bboxes.append([x1, y1, x2, y2])
     return bboxes
 
@@ -53,7 +57,7 @@ if __name__ == "__main__":
 
     if not os.path.exists("results"):
         os.makedirs("results")
-
+    
     # Loop over the dataset
     for x, y in tqdm(zip(images, masks), total=len(images)):
         # Extract the name
@@ -79,14 +83,16 @@ if __name__ == "__main__":
             x1 = bbox[0] + (width/2)
             y1 = bbox[1] + (height/2)
 
-            height, width, x1, y1 = round(height/256,2), round(width/256,2), round(x1/256,2), round(y1/256,2)
+            height, width, x1, y1 = height/256, width/256, x1/256, y1/256
             ''' VERIFY THE COORDINATES '''
 
             with open('annote.txt', 'a') as file:
                 # print('Image : ', name)
-                val = '0' + '\t' + str(x1) + '\t' + str(y1) + '\t' + str(height) + '\t' + str(width)
-                file.write(name + ' ' + val + '\n')
+                val = f"0 {x1} {y1} {width} {height}"
+                file.write(val + '\n')
 
         # Saving the image
+        print('yes')
+        cv2.imwrite(f"bbox/{name}.png", x)
         cat_image = np.concatenate([x, parse_mask(y)], axis=1)
         cv2.imwrite(f"results/{name}.png", cat_image)

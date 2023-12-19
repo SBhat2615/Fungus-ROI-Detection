@@ -2,28 +2,30 @@
 
 ##### OBSERVATIONS #####
 
-- In the final ROI prediction, check the total area of the bbox & probability of the detection -> classify the patch
-- Idea of NMS (Non max supression)
-- Usual bounding boxes may not be suitable for the work
--
-
-
+- Refinement in annotations
+- 
+- 
 
 ##### TRY #####
 
-- Bounding box method using roboflow (Give json annotation to roboflow)
-- Bounding box method on custom object without roboflow (Local machine / Google colab)
+- Predictions + Merge Images
+- Papers
+- Accuracy, Specificity    {for the test set} - {Define custom code}
+- ROC curve    { https://medium.com/lunit/evaluation-curves-for-object-detection-algorithms-in-medical-images-4b083fddce6e }
+
+v5 - 
+semi or un
+attention
+
+OTHER
 - Object Detection using Polygon labelling
 - Build a segmentation model -> Build ROI using that segmentation
 
 
 
-##### PTR #####
 
-- Best model for curvilinear object detection (retinal curves, cornial curves, aerial view of roads & ferries)
-- Compare between different YOLO models
-- Compare between submodels for a model 
-- Different annotation tools
 
-- confusion
-- 
+
+<!-- YOLOV8  vs  YOLOV5 -->
+
+Choose 1 architecture for improvement

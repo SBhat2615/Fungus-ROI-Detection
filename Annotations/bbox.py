@@ -4,10 +4,10 @@ import os
 import glob
 
 # Mask Image Path
-dir = 'Annotations/Images/mask/'
+dir = 'Images/mask/'
 
 # Original Image Path
-odir = 'Annotations/Images/original/'
+odir = 'Images/original/'
 
 # List of all Images
 imgFiles = glob.glob(os.path.join(dir, '*.jpg'))
@@ -18,7 +18,7 @@ for imgPath in imgFiles:
     img1 = cv2.imread(imgPath)
     grayImg = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
     npImg = np.asarray(grayImg)
-
+    
     #print(npImg.shape)
     np.set_printoptions(threshold=np.prod(img1.shape))
     #print(npImg)
@@ -53,7 +53,8 @@ for imgPath in imgFiles:
     maskImg = img1.copy()
     orgImgPath = odir + imgPath.split('/')[-1]
     orgImg = cv2.imread(orgImgPath)
-
+    name = imgPath.split('/')[-1].split('.')[0]
+    print(name)
     # Draw bounding box
     try:
       color = (0, 0, 255)
@@ -63,13 +64,20 @@ for imgPath in imgFiles:
     except:
         pass
     
+    height = y2-y1
+    width = x2-x1
+    xc = x1 + (width/2)
+    yc = y1 + (height/2)
+
+    height, width, xc, yc = height/256, width/256, xc/256, yc/256
+
     # cv2.imshow('Image', grayImg)
     cv2.imshow('Mask Image', maskImg)
     cv2.imshow('Original Image', orgImg)
 
     # Dump the coordinates to text/json
-    with open('Annotations/annote.txt', 'a') as file:
-        val = '1' + '\t' + str(x1) + '\t' + str(y1) + '\t' + str(x2) + '\t' + str(y2)
+    with open('annote.txt', 'a') as file:
+        val = f"0 {xc} {yc} {width} {height}"
         file.write(val + '\n')
 
     cv2.waitKey(5000)

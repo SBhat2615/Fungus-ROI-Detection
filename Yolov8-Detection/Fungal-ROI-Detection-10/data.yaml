@@ -1,0 +1,12 @@
+names:
+- '0'
+nc: 1
+roboflow:
+  license: Private
+  project: fungal-roi-detection
+  url: https://app.roboflow.com/fungal-detection-ttsqh/fungal-roi-detection/10
+  version: 10
+  workspace: fungal-detection-ttsqh
+test: ../test/images
+train: Fungal-ROI-Detection-10/train/images
+val: Fungal-ROI-Detection-10/valid/images
